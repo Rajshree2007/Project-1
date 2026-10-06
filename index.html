@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Frost & Swirl | Premium Ice Cream</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#FFF8EE",
+            pink: "#FF7FA8",
+            berry: "#C93C6D",
+            chocolate: "#633B2A",
+            mint: "#BFEBD8",
+            vanilla: "#FFE5A5"
+          },
+          fontFamily: {
+            display: ["Baloo 2", "cursive"],
+            sans: ["Poppins", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fff8ee;
+      color: #633b2a;
+    }
+
+    .font-display {
+      font-family: "Baloo 2", cursive;
+    }
+
+    .hero-bg {
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.65) 0 5%, transparent 5.5%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,.5) 0 4%, transparent 4.5%),
+        linear-gradient(135deg, #ffe2eb 0%, #fff8ee 52%, #d9f5e8 100%);
+    }
+
+    .ice-cream-glow {
+      box-shadow:
+        0 30px 80px rgba(201, 60, 109, .18),
+        0 10px 25px rgba(99, 59, 42, .12);
+    }
+
+    .card-hover {
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(99, 59, 42, .14);
+    }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    .blob {
+      border-radius: 48% 52% 62% 38% / 52% 42% 58% 48%;
+    }
+
+    .menu-line {
+      position: relative;
+    }
+
+    .menu-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 3px;
+      background: #ff7fa8;
+      border-radius: 20px;
+      transition: width .3s ease;
+    }
+
+    .menu-line:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-white/60">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-11 h-11 rounded-full bg-pink flex items-center justify-center text-2xl">
+          🍦
+        </div>
+        <div>
+          <h1 class="font-display text-2xl font-extrabold text-berry leading-none">
+            Frost & Swirl
+          </h1>
+          <p class="text-[10px] uppercase tracking-[3px] text-chocolate/60">
+            Ice Cream Parlour
+          </p>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-9 text-sm font-medium">
+        <a href="#home" class="menu-line">Home</a>
+        <a href="#flavors" class="menu-line">Flavors</a>
+        <a href="#about" class="menu-line">Our Story</a>
+        <a href="#offers" class="menu-line">Offers</a>
+        <a href="#contact" class="menu-line">Contact</a>
+      </div>
+
+      <a
+        href="#flavors"
+        class="hidden sm:inline-flex bg-berry text-white px-6 py-3 rounded-full font-semibold shadow-lg shadow-berry/20 hover:bg-chocolate transition"
+      >
+        Order Now 🍨
+      </a>
+
+      <button
+        id="menuBtn"
+        class="md:hidden text-2xl"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-5 bg-white">
+      <div class="flex flex-col gap-4 font-medium">
+        <a href="#home">Home</a>
+        <a href="#flavors">Flavors</a>
+        <a href="#about">Our Story</a>
+        <a href="#offers">Offers</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section id="home" class="hero-bg min-h-screen pt-32 pb-16 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+
+      <!-- Hero text -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/70 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <span>✨</span>
+          Handcrafted happiness in every scoop
+        </div>
+
+        <h2 class="font-display text-6xl sm:text-7xl lg:text-8xl font-extrabold leading-[.9] text-chocolate">
+          Scoop.
+          <span class="text-berry">Smile.</span>
+          <br>
+          Repeat.
+        </h2>
+
+        <p class="mt-7 text-lg text-chocolate/70 max-w-xl leading-8">
+          Discover dreamy, creamy ice cream made with love, premium ingredients,
+          and a little sprinkle of magic. Your happy place is just one scoop away.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-9">
+          <a
+            href="#flavors"
+            class="px-7 py-4 rounded-full bg-berry text-white font-semibold shadow-xl shadow-berry/20 hover:bg-chocolate hover:-translate-y-1 transition"
+          >
+            Explore Flavors →
+          </a>
+
+          <a
+            href="#about"
+            class="px-7 py-4 rounded-full bg-white text-chocolate font-semibold border border-chocolate/10 hover:bg-vanilla transition"
+          >
+            Our Story
+          </a>
+        </div>
+
+        <div class="flex gap-8 mt-12">
+          <div>
+            <div class="font-display text-3xl font-bold text-berry">25+</div>
+            <div class="text-xs text-chocolate/60">Unique Flavors</div>
+          </div>
+
+          <div>
+            <div class="font-display text-3xl font-bold text-berry">100%</div>
+            <div class="text-xs text-chocolate/60">Fresh Ingredients</div>
+          </div>
+
+          <div>
+            <div class="font-display text-3xl font-bold text-berry">4.9★</div>
+            <div class="text-xs text-chocolate/60">Happy Customers</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Hero visual -->
+      <div class="relative flex justify-center items-center">
+
+        <div class="absolute w-80 h-80 sm:w-[500px] sm:h-[500px] bg-pink/20 blob"></div>
+
+        <div class="relative floating">
+          <div class="text-[220px] sm:text-[300px] leading-none drop-shadow-2xl">
+            🍦
+          </div>
+
+          <div class="absolute -top-5 -right-5 bg-white rounded-2xl px-5 py-3 shadow-xl rotate-6">
+            <span class="text-sm font-semibold">Made with ❤️</span>
+          </div>
+
+          <div class="absolute bottom-12 -left-10 bg-white rounded-2xl px-5 py-3 shadow-xl -rotate-6">
+            <span class="text-sm font-semibold">Extra sprinkles ✨</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FLAVORS -->
+  <section id="flavors" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="uppercase tracking-[4px] text-sm font-semibold text-berry">
+          Our favorites
+        </p>
+
+        <h2 class="font-display text-5xl sm:text-6xl font-extrabold mt-2">
+          Scoops worth falling for
+        </h2>
+
+        <p class="mt-4 text-chocolate/60">
+          From timeless classics to exciting new creations, there's a flavor
+          waiting to become your new favorite.
+        </p>
+      </div>
+
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+
+        <!-- Card 1 -->
+        <div class="card-hover bg-cream rounded-[2rem] p-5">
+          <div class="h-52 rounded-[1.5rem] bg-pink/30 flex items-center justify-center text-8xl">
+            🍓
+          </div>
+
+          <div class="pt-5">
+            <div class="flex justify-between items-center">
+              <h3 class="font-display text-2xl font-bold">Strawberry Dream</h3>
+              <span class="text-berry font-bold">₹149</span>
+            </div>
+
+            <p class="text-sm text-chocolate/60 mt-2">
+              Fresh strawberries folded into silky vanilla cream.
+            </p>
+
+            <button class="mt-5 w-full bg-white py-3 rounded-xl font-semibold hover:bg-berry hover:text-white transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Card 2 -->
+        <div class="card-hover bg-[#FFF4DC] rounded-[2rem] p-5">
+          <div class="h-52 rounded-[1.5rem] bg-vanilla/60 flex items-center justify-center text-8xl">
+            🍫
+          </div>
+
+          <div class="pt-5">
+            <div class="flex justify-between items-center">
+              <h3 class="font-display text-2xl font-bold">Choco Fudge</h3>
+              <span class="text-berry font-bold">₹169</span>
+            </div>
+
+            <p class="text-sm text-chocolate/60 mt-2">
+              Rich Belgian-style chocolate with fudge ribbons.
+            </p>
+
+            <button class="mt-5 w-full bg-white py-3 rounded-xl font-semibold hover:bg-berry hover:text-white transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Card 3 -->
+        <div class="card-hover bg-[#EAFBF3] rounded-[2rem] p-5">
+          <div class="h-52 rounded-[1.5rem] bg-mint/60 flex items-center justify-center text-8xl">
+            🌿
+          </div>
+
+          <div class="pt-5">
+            <div class="flex justify-between items-center">
+              <h3 class="font-display text-2xl font-bold">Mint Cookie</h3>
+              <span class="text-berry font-bold">₹159</span>
+            </div>
+
+            <p class="text-sm text-chocolate/60 mt-2">
+              Cool mint ice cream packed with crunchy cookie pieces.
+            </p>
+
+            <button class="mt-5 w-full bg-white py-3 rounded-xl font-semibold hover:bg-berry hover:text-white transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Card 4 -->
+        <div class="card-hover bg-[#FFF0F4] rounded-[2rem] p-5">
+          <div class="h-52 rounded-[1.5rem] bg-pink/20 flex items-center justify-center text-8xl">
+            🥭
+          </div>
+
+          <div class="pt-5">
+            <div class="flex justify-between items-center">
+              <h3 class="font-display text-2xl font-bold">Mango Magic</h3>
+              <span class="text-berry font-bold">₹139</span>
+            </div>
+
+            <p class="text-sm text-chocolate/60 mt-2">
+              Sweet, tropical mango goodness with every spoonful.
+            </p>
+
+            <button class="mt-5 w-full bg-white py-3 rounded-xl font-semibold hover:bg-berry hover:text-white transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 bg-cream">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+      <div class="relative">
+        <div class="bg-pink/20 rounded-[3rem] h-[480px] flex items-center justify-center overflow-hidden">
+          <div class="text-[220px] floating">🍨</div>
+        </div>
+
+        <div class="absolute -bottom-5 -right-5 bg-white rounded-3xl shadow-xl px-7 py-5">
+          <div class="text-3xl">💗</div>
+          <p class="font-display font-bold text-xl">Made with love</p>
+          <p class="text-xs text-chocolate/50">Since 2014</p>
+        </div>
+      </div>
+
+
+      <div>
+        <p class="uppercase tracking-[4px] text-sm font-semibold text-berry">
+          A little about us
+        </p>
+
+        <h2 class="font-display text-5xl sm:text-6xl font-extrabold mt-3 leading-tight">
+          We believe happiness tastes like ice cream.
+        </h2>
+
+        <p class="mt-6 text-chocolate/65 leading-8">
+          Frost & Swirl started with one tiny freezer, two big dreams,
+          and a serious love for dessert.
+        </p>
+
+        <p class="mt-4 text-chocolate/65 leading-8">
+          Today, we create handcrafted scoops using quality ingredients,
+          seasonal fruits, and plenty of imagination. Every flavor is made
+          to bring people together and make ordinary moments a little sweeter.
+        </p>
+
+        <div class="grid grid-cols-2 gap-5 mt-8">
+
+          <div class="bg-white p-5 rounded-2xl">
+            <div class="text-3xl">🥛</div>
+            <h3 class="font-bold mt-3">Premium Milk</h3>
+            <p class="text-xs text-chocolate/50 mt-1">
+              Rich & creamy
+            </p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl">
+            <div class="text-3xl">🍓</div>
+            <h3 class="font-bold mt-3">Fresh Fruits</h3>
+            <p class="text-xs text-chocolate/50 mt-1">
+              Naturally delicious
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- OFFER -->
+  <section id="offers" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="relative overflow-hidden rounded-[3rem] bg-berry text-white px-8 sm:px-14 py-14">
+
+        <div class="absolute -right-20 -top-20 w-72 h-72 bg-white/10 rounded-full"></div>
+        <div class="absolute -left-20 -bottom-32 w-80 h-80 bg-white/10 rounded-full"></div>
+
+        <div class="relative grid md:grid-cols-2 gap-10 items-center">
+
+          <div>
+            <span class="inline-block bg-white/15 px-4 py-2 rounded-full text-sm font-semibold">
+              🎉 Scoop of the week
+            </span>
+
+            <h2 class="font-display text-5xl sm:text-6xl font-extrabold mt-5">
+              Buy 2 Scoops,
+              <br>
+              Get 1 Free!
+            </h2>
+
+            <p class="mt-5 text-white/75 max-w-lg">
+              Bring your favorite people and make your next ice cream date
+              extra sweet.
+            </p>
+
+            <button
+              onclick="showOffer()"
+              class="mt-7 bg-white text-berry px-7 py-3 rounded-full font-bold hover:bg-vanilla transition"
+            >
+              Claim Offer
+            </button>
+          </div>
+
+          <div class="text-center">
+            <div class="text-[160px] leading-none">🍦</div>
+            <div class="font-display text-2xl font-bold">
+              Happiness included.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="py-24 bg-cream">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-14">
+        <p class="uppercase tracking-[4px] text-sm font-semibold text-berry">
+          Sweet words
+        </p>
+
+        <h2 class="font-display text-5xl font-extrabold mt-2">
+          Loved by our scoop squad
+        </h2>
+      </div>
+
+
+      <div class="grid md:grid-cols-3 gap-7">
+
+        <div class="bg-white p-8 rounded-[2rem] card-hover">
+          <div class="text-berry text-xl">★★★★★</div>
+
+          <p class="mt-5 text-chocolate/65 leading-7">
+            “The strawberry flavor tastes like summer in a cup.
+            Absolutely dreamy!”
+          </p>
+
+          <div class="flex items-center gap-3 mt-7">
+            <div class="w-11 h-11 rounded-full bg-pink/30 flex items-center justify-center">
+              👩
+            </div>
+            <div>
+              <p class="font-bold text-sm">Aanya</p>
+              <p class="text-xs text-chocolate/50">Happy customer</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="bg-white p-8 rounded-[2rem] card-hover">
+          <div class="text-berry text-xl">★★★★★</div>
+
+          <p class="mt-5 text-chocolate/65 leading-7">
+            “Beautiful place, delicious ice cream, and the staff
+            are incredibly sweet. My new favorite!”
+          </p>
+
+          <div class="flex items-center gap-3 mt-7">
+            <div class="w-11 h-11 rounded-full bg-mint flex items-center justify-center">
+              👨
+            </div>
+            <div>
+              <p class="font-bold text-sm">Rohan</p>
+              <p class="text-xs text-chocolate/50">Happy customer</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="bg-white p-8 rounded-[2rem] card-hover">
+          <div class="text-berry text-xl">★★★★★</div>
+
+          <p class="mt-5 text-chocolate/65 leading-7">
+            “The choco fudge is dangerously good. One scoop
+            somehow always becomes three!”
+          </p>
+
+          <div class="flex items-center gap-3 mt-7">
+            <div class="w-11 h-11 rounded-full bg-vanilla flex items-center justify-center">
+              👩‍🦱
+            </div>
+            <div>
+              <p class="font-bold text-sm">Meera</p>
+              <p class="text-xs text-chocolate/50">Happy customer</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="grid md:grid-cols-2 gap-12">
+
+        <div>
+          <p class="uppercase tracking-[4px] text-sm font-semibold text-berry">
+            Visit us
+          </p>
+
+          <h2 class="font-display text-5xl font-extrabold mt-3">
+            Come grab a scoop.
+          </h2>
+
+          <p class="mt-5 text-chocolate/60 leading-7">
+            Your next sweet memory is waiting for you.
+            Drop by, say hello, and let us serve you something delicious.
+          </p>
+
+          <div class="mt-8 space-y-5">
+
+            <div class="flex gap-4">
+              <div class="w-11 h-11 bg-pink/20 rounded-xl flex items-center justify-center">
+                📍
+              </div>
+              <div>
+                <p class="font-bold">Our Parlour</p>
+                <p class="text-sm text-chocolate/55">
+                  24 Sweet Street, Your City
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-11 h-11 bg-mint rounded-xl flex items-center justify-center">
+                🕐
+              </div>
+              <div>
+                <p class="font-bold">Opening Hours</p>
+                <p class="text-sm text-chocolate/55">
+                  Mon – Sun · 11 AM – 11 PM
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="w-11 h-11 bg-vanilla rounded-xl flex items-center justify-center">
+                📞
+              </div>
+              <div>
+                <p class="font-bold">Call Us</p>
+                <p class="text-sm text-chocolate/55">
+                  +91 98765 43210
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <form
+          onsubmit="submitForm(event)"
+          class="bg-cream rounded-[2rem] p-7 sm:p-9"
+        >
+          <h3 class="font-display text-3xl font-bold">
+            Say hello 👋
+          </h3>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-6">
+
+            <input
+              required
+              type="text"
+              placeholder="Your name"
+              class="w-full bg-white border-0 rounded-xl px-4 py-4 outline-none focus:ring-2 focus:ring-pink"
+            >
+
+            <input
+              required
+              type="email"
+              placeholder="Email address"
+              class="w-full bg-white border-0 rounded-xl px-4 py-4 outline-none focus:ring-2 focus:ring-pink"
+            >
+
+          </div>
+
+          <textarea
+            required
+            rows="5"
+            placeholder="Tell us something sweet..."
+            class="w-full mt-4 bg-white border-0 rounded-xl px-4 py-4 outline-none focus:ring-2 focus:ring-pink resize-none"
+          ></textarea>
+
+          <button
+            type="submit"
+            class="w-full mt-4 bg-berry text-white py-4 rounded-xl font-semibold hover:bg-chocolate transition"
+          >
+            Send Message 💌
+          </button>
+
+          <p id="formMessage" class="text-center text-sm mt-4 hidden"></p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-chocolate text-white py-12">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <div>
+          <div class="flex items-center gap-2">
+            <div class="w-11 h-11 bg-pink rounded-full flex items-center justify-center text-2xl">
+              🍦
+            </div>
+
+            <div>
+              <h2 class="font-display text-2xl font-bold">
+                Frost & Swirl
+              </h2>
+              <p class="text-[9px] tracking-[3px] text-white/50">
+                ICE CREAM PARLOUR
+              </p>
+            </div>
+          </div>
+
+          <p class="text-white/50 text-sm mt-5 max-w-sm">
+            Handcrafted ice cream, happy hearts, and sweet memories.
+          </p>
+        </div>
+
+
+        <div>
+          <h3 class="font-bold mb-4">Quick Links</h3>
+
+          <div class="space-y-2 text-sm text-white/55">
+            <a href="#home" class="block hover:text-pink">Home</a>
+            <a href="#flavors" class="block hover:text-pink">Flavors</a>
+            <a href="#about" class="block hover:text-pink">Our Story</a>
+            <a href="#contact" class="block hover:text-pink">Contact</a>
+          </div>
+        </div>
+
+
+        <div>
+          <h3 class="font-bold mb-4">Follow the sweetness</h3>
+
+          <div class="flex gap-3">
+            <a href="#" class="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink transition">
+              📸
+            </a>
+
+            <a href="#" class="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink transition">
+              💬
+            </a>
+
+            <a href="#" class="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink transition">
+              🎵
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="border-t border-white/10 mt-10 pt-7 text-center text-xs text-white/40">
+        © 2026 Frost & Swirl. Made with love & lots of ice cream 🍦
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+
+    // Close mobile menu after clicking a link
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+
+
+    // Offer button
+    function showOffer() {
+      alert("🎉 Your Buy 2 Get 1 Free offer is ready! Show this message at the counter.");
+    }
+
+
+    // Contact form
+    function submitForm(event) {
+      event.preventDefault();
+
+      const message = document.getElementById("formMessage");
+
+      message.textContent = "💗 Thanks! Your message has been received.";
+      message.classList.remove("hidden");
+      message.classList.add("text-green-600");
+
+      event.target.reset();
+    }
+
+  </script>
+
+</body>
+</html>
